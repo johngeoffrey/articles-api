@@ -21,8 +21,14 @@ services:
         environment:
             - "DB_PORT=3306"
             - "DB_HOST=database"
+    composer:
+      restart: 'no'
+      image: composer/composer:php7
+      command: install
+      volumes:
+        - ./:/var/www
     database:
-        image: mysql:5.6
+        image: mysql:5.7.7
         environment:
             - "MYSQL_ROOT_PASSWORD=secret"
             - "MYSQL_DATABASE=homestead"
